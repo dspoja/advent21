@@ -40,24 +40,6 @@ def check_board(number: int, board_num: int, board: List, board_counter: List) -
             # so it is not in the list, move to the next number
             pass
 
-
-def check_board_last_win(number: int, board_num: int, board: List, board_counter: List) -> bool:
-    for i, row in enumerate(board):
-        try:
-            index = row.index(number)
-            row[index] = int(row[index])
-            # update row counter and check for wins
-            board_counter[board_num]["rows"][i] = board_counter[board_num]["rows"][i] + 1
-            if board_counter[board_num]["rows"][i] == len(row):
-                return True
-            # update column counter and check for wins
-            board_counter[board_num]["columns"][index] = board_counter[board_num]["columns"][index] + 1
-            if board_counter[board_num]["columns"][index] == len(board_counter[board_num]["columns"]):
-                return True
-        except ValueError:
-            # so it is not in the list, move to the next number
-            pass
-
 def compute_winning_score(board: List, number: int) -> int:
     sum = 0
     for row in board:
@@ -83,7 +65,7 @@ def play_bingo(let_the_squid_win: bool) -> int:
     for number in draws:
         for board_num, board in enumerate(boards):
             #check the numbers against the board
-            if check_board_last_win(number, board_num, board, board_counter):
+            if check_board(number, board_num, board, board_counter):
                 winnig_score = compute_winning_score(board, number)
                 if let_the_squid_win:
                     if board_num not in winners:
