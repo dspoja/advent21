@@ -70,7 +70,7 @@ def compute_points(illegals: List[str]) -> int:
     return points
 
 
-with open("input10", "rb") as data:
+with open("input10`", "rb") as data:
     lines = [list(line.decode("utf8").split()[0]) for line in data]
 
 illegal_list, incomplete_lines = part1(lines)
